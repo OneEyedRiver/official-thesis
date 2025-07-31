@@ -99,8 +99,8 @@
 
  
 <div class="w-[90%] grid  gap-3 grid-cols-2 sm:w-[70%]  sm:gap-4 sm:grid-cols-3 flex items-center sm:m-a   sm:pl-12  "> 
-  @foreach ($products as $categoryName => $items)
-    <h2>{{ $categoryName }}</h2>
+  @foreach ($products as $product)
+   
 
 <div class="w-full  max-w-3xs h-[275px] border border-gray-700 p-3  rounded-md shadow-lg  hover:shadow/2xl  transition duration-300 ease-in-out hover:-translate-y-2 relative cursor-pointer ">
     

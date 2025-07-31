@@ -7,23 +7,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; 
 class UserController extends Controller
 {
-         public function showMenu()
-    {
+      public function showMenu()
+{
+    $userID = Auth::id();
 
-      
-     $userID=Auth::id();
-    
-        
-     $products = Product::all()->groupBy('product_category');
-     $categories = Product::select('product_category')->distinct()->get();
+    // Group products by category
+    $products = Product::all()->groupBy('product_category');
 
-     return view('user.menu', [
-    'products' => $products,
-    'categories'=> $categories
+    return view('user.menu', [
+        'products' => $products,
+    ]);
+}
+
+
+
     
-]);
-   
-    }
 
              public function userOnly()
     {
