@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+              Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('f_name');
             $table->string('l_name');
@@ -19,10 +19,7 @@ return new class extends Migration
             $table->string('phone_number')->nullable();
             $table->string('email')->unique();
             $table->string('password');
-            $table->unsignedBigInteger('store_id');
-
-
-
+            // $table->unsignedBigInteger('store_id');
             $table->string('address_line_1')->nullable();
             $table->string('address_line_2')->nullable();
             $table->string('city')->nullable();
@@ -30,25 +27,17 @@ return new class extends Migration
             $table->string('postal_code')->nullable();
             $table->string('country')->nullable();
             $table->string('profile_image')->nullable();
-
             $table->boolean('is_admin')->default(false);
-
-         
+            $table->boolean('is_seller')->default(false);
             $table->timestamp('email_verified_at')->nullable();
-            
-
-
-           
-            
             $table->rememberToken();
             $table->timestamps();
+        
+          
+            $table->engine = 'InnoDB'; 
+        
             
-
-            $table->foreign('seller_id')
-             ->references('id')->on('stores')
-            ->onDelete('cascade');
         });
-
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
             $table->string('token');

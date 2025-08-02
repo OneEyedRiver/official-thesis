@@ -11,7 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
+      
+
+  Schema::create('products', function (Blueprint $table) {
+            $table->id();
                           $table->foreignId('seller_id')->constrained('users')->onDelete('cascade');
 
             $table->string('product_name');
@@ -31,6 +34,7 @@ return new class extends Migration
            
           $table->boolean('is_available')->default(true);
           $table->string('product_description')->nullable();
+          $table->timestamps();
 
 
 

@@ -33,16 +33,48 @@
 <!--Navigation -->
   @endauth
 
+
+   @guest
+     
+   
+<!--Navigation -->
+<div class="flex justify-around gap-x-12"> 
+
+<a href="{{ route('show.menu') }} " class="group inline-block">
+    <img src="{{ asset('images/home-icon.png') }}" alt="Clickable Image" class="group-hover:hidden w-12 h-12 transition">
+    <img src="{{ asset('images/home-icon-hover.png') }}" alt="Clickable Image" class="hidden group-hover:inline w-13 h-13 transition">
+
+</a>
+
+</div>
+<!--Navigation -->
+  @endguest
+
+
 <div class="  mt-2 ">
 
 
-  @guest
-<button id="dropdownInformationButton" data-dropdown-toggle="dropdownInformation" class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center" type="button">Account <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-  @endguest
+@php
+    $isGuest = auth()->guest();
+    $isAuth = auth()->check();
+@endphp
 
-    @auth
-<button id="dropdownInformationButton" data-dropdown-toggle="dropdownInformation" class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center" type="button">{{Auth::user()->username}} <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-  @endauth
+<button id="dropdownInformationButton"
+        data-dropdown-toggle="dropdownInformation"
+        class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
+        type="button">
+
+    @if ($isGuest)
+        Account
+    @elseif ($isAuth)
+        {{ Auth::user()->username }}
+    @endif
+
+    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+    </svg>
+</button>
+
 
   
 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
@@ -52,18 +84,16 @@
 @guest
   <!-- Dropdown menu for guest-->
 <div id="dropdownInformation" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-30 ">
-  <div class=" py-2 text-sm text-gray-700 ">
+ 
     
   
   <form  action="{{route('show.login')}}" method="GET" class=" ">
     @csrf
-        <button type="submit"  class="block px-4 py-2 hover:bg-gray-200">Log-in/Register</button>
+        <button type="submit"  class="block px-4 py-2 hover:bg-gray-200"><p>Log-in/Register</button>
 </form>
 
 
-  </div>
-
-  
+   
 
 
 </div>
@@ -78,7 +108,7 @@
 
 @auth
   <!-- Dropdown menu for authenticated users-->
-<div id="dropdownInformation" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-30 ">
+<div id="dropdownInformation" class="absolute  z-50 mt-2 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-40">
   <div class="px-4 py-3 text-sm text-gray-900 ">
     <div>{{Auth::user()->username}}</div>
     <div class="font-medium truncate">{{Auth::user()->email}}</div>
