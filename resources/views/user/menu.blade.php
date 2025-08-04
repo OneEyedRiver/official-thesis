@@ -61,6 +61,8 @@
 
 <div class="w-[90%] grid  gap-3 grid-cols-2 sm:w-[70%]  sm:gap-4 sm:grid-cols-3 flex items-center sm:m-a   sm:pl-12  "> 
                 @foreach ($categoryProducts as $product)
+
+                <a href="{{ route('product.view', $product->id) }}" class="block">
                     <div class="w-full max-w-3xs h-[275px] border border-gray-700 p-3 rounded-md shadow-lg hover:shadow-2xl transition duration-300 ease-in-out hover:-translate-y-2 relative cursor-pointer">
 
                         <img src="{{ asset('storage/' . $product->product_image) }}" alt="Product Image" class="w-full h-[60%] object-cover">
@@ -86,6 +88,7 @@
                        
                         </div>
                     </div>
+                    </a>
                 @endforeach
             </div>
         </div>

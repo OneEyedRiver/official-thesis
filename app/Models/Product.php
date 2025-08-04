@@ -13,7 +13,7 @@ class Product extends Model
         'product_unit',
         'product_qty',
         'product_freshness',
-
+        'product_description',
         'harvest_date',
         'product_image',
         'deliver_availability',

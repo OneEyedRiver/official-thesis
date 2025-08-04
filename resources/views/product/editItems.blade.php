@@ -314,6 +314,16 @@ $products_freshness=["fresh", "frozen", "day-old"];
   </div>
 
 </div>
+<div class="m-4">
+
+<label for="message" class="block mb-2 text-sm font-medium text-gray-900 ">Product Description(optional):</label>
+<textarea id="message" name="product_description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Add Product Description"    >{{$products->product_description}}</textarea>
+          @error('product_description')
+              <p class="mt-2 text-xs text-red-600 dark:text-red-500">{{$message}}</p>
+            @enderror
+
+</div>
+
 
 <div class="grid gap-0 grid-cols-1  sm:grid-cols-3 w-full flex justify-center items-center sm:pl-6 ">
 

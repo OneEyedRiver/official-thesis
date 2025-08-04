@@ -13,7 +13,7 @@ Route::get('/', function () {
 */
 Route::get('/', [UserController::class, 'showMenu'])->name('home');
 Route::get('/menu',[UserController::class,'showMenu'])->name('show.menu');
-
+Route::get('/view/{id}',[ProductController::class,'view'])->name('product.view');
 
 
 

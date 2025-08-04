@@ -23,6 +23,7 @@ class ProductController extends Controller
      'product_price' => 'required|numeric|gt:0|max:9999999999',
      'product_qty' => 'required|numeric|gt:0|max:999999', // Accepts decimals > 0
      'product_freshness'=>'required|max:20|min:2',
+     'product_description'=>'max:2005',
      'product_image'=> 'required|image|mimes:jpg,jpeg,png,gif|max:2048', // max 2MB
 
  ]);
@@ -50,7 +51,7 @@ class ProductController extends Controller
      'product_image' => $filePath ?? null,
  
      'harvest_date'=>$request->harvest_date,
-
+      'product_description'=>$request->product_description,
      'deliver_availability'=>(int) $request->deliver_availability,
      'pick_up_availability'=>(int) $request->pick_up_availability,
      'seller_id' =>Auth::id(),
@@ -114,6 +115,7 @@ else {
      'product_price' => 'required|numeric|gt:0|max:9999999999',
      'product_qty' => 'required|numeric|gt:0|max:999999', // Accepts decimals > 0
      'product_freshness'=>'required|max:20|min:2',
+     'product_description'=>'max:2005',
    //  'product_image'=> 'required|image|mimes:jpg,jpeg,png,gif|max:2048', // max 2MB
 
  ]);
@@ -134,7 +136,8 @@ else {
      //'product_image' => $filePath ?? null,
  
      'harvest_date'=>$request->harvest_date,
- 
+      'product_description'=>$request->product_description,
+
      'deliver_availability'=>(int) $request->deliver_availability,
      'pick_up_availability'=>(int) $request->pick_up_availability,
      'is_available'=>(int) $request->product_availability,
@@ -176,4 +179,18 @@ else {
     return back()->with('success', 'Product image updated successfully!');
       
     }
+
+   public function view($id)
+     {
+             $productChosen=Product::find($id);
+             
+             
+    if ($productChosen) {
+
+     return view('product.view', [
+    'products' => $productChosen,
+    ]);
+
+  }}
+
 }
